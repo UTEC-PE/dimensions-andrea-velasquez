@@ -14,6 +14,7 @@ class Vector {
         int dimensions;
         int* dimensionSizes;
 
+        Operation pos;
     public:
         Vector() : data(nullptr) {};
              
@@ -24,9 +25,14 @@ class Vector {
              
         Vector(int* dimensionSizes) :
         Vector(sizeof(dimensionSizes)/sizeof(dimensionSizes[0]), dimensionSizes) {}
-        void set(T datum, int* coordinates); // TODO
-             
-        T get(int* coordinates); // TODO
+
+        void set(T datum, int* coordinates){
+          data[pos(coordinates, dimensionSizes, dimensions)] = datum;
+        };
+
+        T get(int* coordinates){
+          return data[pos(coordinates, dimensionSizes, dimensions)];
+        };
 };
 
 #endif
